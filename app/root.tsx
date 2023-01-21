@@ -1,4 +1,6 @@
-import { json, LoaderArgs, MetaFunction } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction, LinksFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
+
 import {
   Links,
   LiveReload,
@@ -16,6 +18,9 @@ import { createBrowserClient } from "@supabase/auth-helpers-remix";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "db_types";
 
+import styles from "./tailwind.css";
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+
 type TypedSupabaseClient = SupabaseClient<Database>;
 
 export type SupabaseOutletContext = {
@@ -23,10 +28,10 @@ export type SupabaseOutletContext = {
 };
 
 export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "New Remix App",
-  viewport: "width=device-width,initial-scale=1",
-});
+  charset: 'utf-8',
+  title: 'Talk to the world!',
+  viewport: 'width=device-width,initial-scale=1',
+})
 
 export const loader = async ({ request }: LoaderArgs) => {
   const env = {
@@ -70,17 +75,17 @@ export default function App() {
   }, [supabase, serverAccessToken, revalidator]);
 
   return (
-    <html lang="en">
+    <html className="h-full antialiased" lang="en">
       <head>
         <Meta />
         <Links />
       </head>
-      <body>
-        <Outlet context={{ supabase }} />
+      <body className="flex flex-col h-full antialiased bg-white ">
+        <Outlet context={{ supabase }}/>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
       </body>
     </html>
-  );
+  )
 }
