@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
-import clsx from 'clsx'
 import { Link } from '@remix-run/react'
+import clsx from 'clsx'
 
 interface ButtonProps {
   variant?: 'solid' | 'outline'
@@ -21,7 +21,8 @@ const baseStyles = {
 
 const variantStyles = {
   solid: {
-    amber: 'relative overflow-hidden bg-amber-500 text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10 active:bg-amber-600 active:text-white/80 before:transition-colors',
+    amber:
+      'relative overflow-hidden bg-amber-500 text-white before:absolute before:inset-0 active:before:bg-transparent hover:before:bg-white/10 active:bg-amber-600 active:text-white/80 before:transition-colors',
     white:
       'bg-white text-amber-900 hover:bg-white/90 active:bg-white/90 active:text-amber-900/70',
     gray: 'bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80',

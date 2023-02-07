@@ -1,10 +1,9 @@
 import { Popover } from '@headlessui/react'
 import { AnimatePresence, motion } from 'framer-motion'
-import Login from '@/components/Login'
+
 import { Container } from '@/components/Container'
+import Login from '@/components/Login'
 import { Logo } from '@/components/Logo'
-
-
 
 function MenuIcon(props: any) {
   return (
@@ -31,7 +30,6 @@ function ChevronUpIcon(props: any) {
     </svg>
   )
 }
-
 
 export default function Header() {
   return (

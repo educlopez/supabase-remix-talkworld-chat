@@ -21,14 +21,19 @@ function GitHubIcon(props: any) {
 interface Social {
   href: string
   icon: any
-  children?: React.ReactNode,
+  children?: React.ReactNode
   rel: string
   target: string
 }
 
 function SocialLink(props: Social) {
   return (
-    <a href={props.href} className="group" target={props.target} rel={props.rel}>
+    <a
+      href={props.href}
+      className="group"
+      target={props.target}
+      rel={props.rel}
+    >
       <span className="sr-only">{props.children}</span>
       <props.icon className="w-5 h-5 transition fill-zinc-700 group-hover:fill-zinc-900 " />
     </a>

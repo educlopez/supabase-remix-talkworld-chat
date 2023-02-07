@@ -1,41 +1,38 @@
-import { Form, useLoaderData } from "@remix-run/react";
-import createServerSupabase from "utils/supabase.server";
-import { json } from "@remix-run/node";
-import RealtimeMessages from "@/components/Realtime-messages";
-import Header from '@/components/Header'
-import type { ActionArgs, LoaderArgs } from "@remix-run/node";
-import { Footer } from "@/components/Footer";
-import bg from 'public/bg-ray-light-talk-world.png'
+import { json, type ActionArgs, type LoaderArgs } from '@remix-run/node'
+import { Form, useLoaderData } from '@remix-run/react'
 import { motion } from 'framer-motion'
-import {
-  FADE_DOWN_ANIMATION_VARIANTS,
-} from '@/lib/constants'
+import bg from 'public/bg-ray-light-talk-world.png'
+import createServerSupabase from 'utils/supabase.server'
+
+import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/constants'
+import { Footer } from '@/components/Footer'
+import Header from '@/components/Header'
+import RealtimeMessages from '@/components/Realtime-messages'
 
 export const action = async ({ request }: ActionArgs) => {
-  const response = new Response();
-  const supabase = createServerSupabase({ request, response });
+  const response = new Response()
+  const supabase = createServerSupabase({ request, response })
 
-  const { message } = Object.fromEntries(await request.formData());
+  const { message } = Object.fromEntries(await request.formData())
   const { error } = await supabase
-    .from("messages")
-    .insert({ content: String(message) });
+    .from('messages')
+    .insert({ content: String(message) })
 
   if (error) {
-    console.log(error);
+    console.log(error)
   }
 
-  return json(null, { headers: response.headers });
-};
+  return json(null, { headers: response.headers })
+}
 
 export const loader = async ({ request }: LoaderArgs) => {
-  const response = new Response();
-  const supabase = createServerSupabase({ request, response });
+  const response = new Response()
+  const supabase = createServerSupabase({ request, response })
 
-  const { data } = await supabase.from("messages").select();
+  const { data } = await supabase.from('messages').select()
 
-  return json({ messages: data ?? [] }, { headers: response.headers });
-};
-
+  return json({ messages: data ?? [] }, { headers: response.headers })
+}
 
 export function Bg() {
   return (
@@ -49,7 +46,7 @@ export function Bg() {
   )
 }
 export default function Index() {
-  const { messages } = useLoaderData<typeof loader>();
+  const { messages } = useLoaderData<typeof loader>()
 
   return (
     <>

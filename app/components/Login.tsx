@@ -1,6 +1,7 @@
-import { useOutletContext } from '@remix-run/react'
-import { Button } from '@/components/Button'
 import type { SupabaseOutletContext } from '@/root'
+import { useOutletContext } from '@remix-run/react'
+
+import { Button } from '@/components/Button'
 
 export default function Login() {
   const { supabase } = useOutletContext<SupabaseOutletContext>()
